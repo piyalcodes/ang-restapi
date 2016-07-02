@@ -1,0 +1,33 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+<body>	
+	<div ng-controller="myCtrl">
+<ul>
+	<li ng-repeat="item in items"><img src="{{item.image}}" /></li>
+</ul>
+	</div>
+	<!-- Load scripts. -->
+	<script type="text/javascript" src="http://localhost:8082/int/phpAPI/jquery-3.0.0.min.js"></script>
+ 
+<script src="http://localhost:8082/int/phpAPI/angular.min.js"></script>
+ <script src="http://localhost:8082/int/phpAPI/resources.js"></script>
+	<script type="text/javascript">
+	
+	angular.module('myApp', ['ngResource'])
+.controller('myCtrl', function ($scope, $http) {
+  var url = "http://www.piyaldarshana.com/int/api.php?callback=JSON_CALLBACK&API=AFIOB854";
+$http.jsonp(url)
+    .success(function(data) {
+				 
+        $scope.items = data.user;
+ 
+    });
+    
+});
+	
+	
+	</script>
+
+</body>
+</html>
